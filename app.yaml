@@ -2,12 +2,3 @@ runtime: python37
 instance_class: B1
 
 
-# and add the following lines to the handlers element:
-handlers:
- - url: '/.*'
-   script: auto
-
-resources:
-  cpu: 1
-  memory_gb: 2.1
-  disk_size_gb: 10
