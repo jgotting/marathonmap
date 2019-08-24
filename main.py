@@ -15,15 +15,10 @@ import folium
 from folium.plugins import MarkerCluster
 from geopy.geocoders import Nominatim
 
-
-
-
 #os.listdir()
 #Läs in datafil
 df = pd.read_csv('Maraton 2019.csv', sep=';')
 df.head()
-
-
 
 
 # dropping null value columns to avoid errors 
@@ -44,16 +39,13 @@ df.drop(columns =["Plats"], inplace = True)
 # df display 
 df.head()
 
-
-
 # Fixa visualisering
 
 # Translate location to coordinates
 nom = Nominatim(user_agent="my-application")
 place = "Palma de Mallorca, Spain"
 n=nom.geocode(place)
-print (place)
-print(n.latitude, n.longitude)
+# print(n.latitude, n.longitude)
 
 #starting map
 m = folium.Map(
@@ -65,10 +57,8 @@ tiles='Stamen Terrain'
 
 # Geopy för att mappa Location mot coordinater
 for index, row in df.iterrows(): 
-    #print (row["Location"], row["Date"])
     n=nom.geocode(row["Location"])
     tooltip = '<a href="'+ row["URL"] + '" target="_blank">' + row["Location"] + '</a>'
-    #<a href="https://www.w3schools.com">Visit W3Schools</a>
     folium.Marker([n.latitude, n.longitude], popup=tooltip + '<b>' + row["Date"] + '</b>' , tooltip=row["Namn"]).add_to(m)
 
 
