@@ -13,7 +13,7 @@ import pandas as pd
 import requests
 import folium
 from folium.plugins import MarkerCluster
-from geopy.geocoders import Nominatim
+# from geopy.geocoders import Nominatim
 
 #os.listdir()
 #Läs in datafil
@@ -42,24 +42,25 @@ df.head()
 # Fixa visualisering
 
 # Translate location to coordinates
-nom = Nominatim(user_agent="my-application")
-place = "Palma de Mallorca, Spain"
-n=nom.geocode(place)
+#nom = Nominatim(user_agent="my-application")
+#place = "Palma de Mallorca, Spain"
+#n=nom.geocode(place)
 # print(n.latitude, n.longitude)
 
 #starting map
 m = folium.Map(
-location=[n.latitude, n.longitude],
+#location=[n.latitude, n.longitude],
+location=[0, 0],
 zoom_start=5
 ,
 tiles='Stamen Terrain'
 )
 
 # Geopy för att mappa Location mot coordinater
-for index, row in df.iterrows(): 
-    n=nom.geocode(row["Location"])
-    tooltip = '<a href="'+ row["URL"] + '" target="_blank">' + row["Location"] + '</a>'
-    folium.Marker([n.latitude, n.longitude], popup=tooltip + '<b>' + row["Date"] + '</b>' , tooltip=row["Namn"]).add_to(m)
+#for index, row in df.iterrows(): 
+   # n=nom.geocode(row["Location"])
+   # tooltip = '<a href="'+ row["URL"] + '" target="_blank">' + row["Location"] + '</a>'
+   # folium.Marker([n.latitude, n.longitude], popup=tooltip + '<b>' + row["Date"] + '</b>' , tooltip=row["Namn"]).add_to(m)
 
 
 
