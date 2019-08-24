@@ -13,7 +13,7 @@ import pandas as pd
 import requests
 import folium
 from folium.plugins import MarkerCluster
-# from geopy.geocoders import Nominatim
+from geopy.geocoders import Nominatim
 
 #os.listdir()
 #Läs in datafil
@@ -42,10 +42,11 @@ df.head()
 # Fixa visualisering
 
 # Translate location to coordinates
-#nom = Nominatim(user_agent="my-application")
-#place = "Palma de Mallorca, Spain"
-#n=nom.geocode(place)
-# print(n.latitude, n.longitude)
+nom = Nominatim(user_agent="my-application")
+place = "Palma de Mallorca, Spain"
+n=nom.geocode(place)
+print(place)
+print(n.latitude, n.longitude)
 
 #starting map
 m = folium.Map(
@@ -55,6 +56,8 @@ zoom_start=5
 ,
 tiles='Stamen Terrain'
 )
+
+#folium.Marker(n.latitude, n.longitude)
 
 # Geopy för att mappa Location mot coordinater
 #for index, row in df.iterrows(): 
