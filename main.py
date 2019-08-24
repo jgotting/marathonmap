@@ -45,8 +45,8 @@ df.head()
 nom = Nominatim(user_agent="my-application")
 place = "Palma de Mallorca, Spain"
 n=nom.geocode(place)
-print(place)
-print(n.latitude, n.longitude)
+# print(place)
+# print(n.latitude, n.longitude)
 
 #starting map
 m = folium.Map(
@@ -64,7 +64,7 @@ tiles='Stamen Terrain'
    # n=nom.geocode(row["Location"])
    # tooltip = '<a href="'+ row["URL"] + '" target="_blank">' + row["Location"] + '</a>'
    # folium.Marker([n.latitude, n.longitude], popup=tooltip + '<b>' + row["Date"] + '</b>' , tooltip=row["Namn"]).add_to(m)
-
+folium.Marker([0,0]).add_to(m)
 
 
 app = Flask(__name__)
@@ -75,7 +75,6 @@ def index():
     
 # Display map    
     return m._repr_html_()
-
 if __name__ == '__main__':
     app.run(debug=True)
 
