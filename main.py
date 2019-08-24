@@ -2,7 +2,7 @@
 # coding: utf-8
 
 # # Marathonkandidater 2010
-# Syftet med denna notebook är att på en karta (Open Street Map) plotta ut kndidater för Marathons hösten 2020.
+# Syftet med denna notebook är att på en karta (Open Street Map) plotta ut tänkbara kandidater för Marathons hösten 2020.
 
 
 
@@ -48,7 +48,9 @@ df.head()
 
 # Translate location to coordinates
 nom = Nominatim(user_agent="my-application")
-n=nom.geocode("Palma de Mallorca, Spain")
+place = "Palma de Mallorca, Spain"
+n=nom.geocode(place)
+print (place)
 print(n.latitude, n.longitude)
 
 
