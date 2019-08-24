@@ -1,13 +1,12 @@
 runtime: python37
-env: flex
-# entrypoint: gunicorn -b :$PORT main:app
+instance_class: B1
 
 
-# runtime_config:
-#  python_version: 3
+# and add the following lines to the handlers element:
+handlers:
+ - url: '/.*'
+   script: auto
 
-manual_scaling:
-  instances: 1
 resources:
   cpu: 1
   memory_gb: 2.1
