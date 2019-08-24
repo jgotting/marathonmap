@@ -1,5 +1,2 @@
 runtime: python37
-service: service-name
 instance_class: F4_1G
-
-entrypoint: gunicorn -b :$PORT main:app.server
