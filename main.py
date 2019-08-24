@@ -51,7 +51,7 @@ n=nom.geocode(place)
 #starting map
 m = folium.Map(
 #location=[n.latitude, n.longitude],
-location=[0, 0],
+location=[n.latitude, n.longitude],
 zoom_start=5
 ,
 tiles='Stamen Terrain'
@@ -64,7 +64,7 @@ tiles='Stamen Terrain'
    # n=nom.geocode(row["Location"])
    # tooltip = '<a href="'+ row["URL"] + '" target="_blank">' + row["Location"] + '</a>'
    # folium.Marker([n.latitude, n.longitude], popup=tooltip + '<b>' + row["Date"] + '</b>' , tooltip=row["Namn"]).add_to(m)
-folium.Marker([0,0]).add_to(m)
+folium.Marker([n.latitude, n.longitude]).add_to(m)
 
 
 app = Flask(__name__)
