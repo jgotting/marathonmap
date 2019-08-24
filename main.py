@@ -8,6 +8,7 @@
 
 #Importera våra moduler
 # import os
+from flask import Flask
 import pandas as pd
 import requests
 import folium
@@ -45,6 +46,7 @@ df.head()
 
 
 
+# Fixa visualisering
 
 # Translate location to coordinates
 nom = Nominatim(user_agent="my-application")
@@ -53,10 +55,22 @@ n=nom.geocode(place)
 print (place)
 print(n.latitude, n.longitude)
 
+#starting map
+m = folium.Map(
+location=[n.latitude, n.longitude],
+zoom_start=5
+,
+tiles='Stamen Terrain'
+)
 
+# Geopy för att mappa Location mot coordinater
+for index, row in df.iterrows(): 
+    #print (row["Location"], row["Date"])
+    n=nom.geocode(row["Location"])
+    tooltip = '<a href="'+ row["URL"] + '" target="_blank">' + row["Location"] + '</a>'
+    #<a href="https://www.w3schools.com">Visit W3Schools</a>
+    folium.Marker([n.latitude, n.longitude], popup=tooltip + '<b>' + row["Date"] + '</b>' , tooltip=row["Namn"]).add_to(m)
 
-
-# Fixa visualisering
 
 
 app = Flask(__name__)
@@ -64,26 +78,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    m = folium.Map(
-    location=[n.latitude, n.longitude],
-    zoom_start=5
-,
-    tiles='Stamen Terrain'
-)
-
-# Geopy för att mappa Location mot coordinater
-    for index, row in df.iterrows(): 
-        #print (row["Location"], row["Date"])
-        n=nom.geocode(row["Location"])
-        tooltip = '<a href="'+ row["URL"] + '" target="_blank">' + row["Location"] + '</a>'
-        #<a href="https://www.w3schools.com">Visit W3Schools</a>
-        folium.Marker([n.latitude, n.longitude], popup=tooltip + '<b>' + row["Date"] + '</b>' , tooltip=row["Namn"]).add_to(m)
-
-
-
+    
 # Display map    
     return m._repr_html_()
-
 
 if __name__ == '__main__':
     app.run(debug=True)
