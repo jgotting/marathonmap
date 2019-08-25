@@ -28,6 +28,7 @@ pytz==2019.2
 requests==2.22.0
 six==1.12.0
 toolz==0.10.0
+gunicorn==19.3.0
 urllib3==1.25.3
 vincent==0.4.4
 Werkzeug==0.15.5
