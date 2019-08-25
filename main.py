@@ -60,11 +60,11 @@ tiles='Stamen Terrain'
 #folium.Marker(n.latitude, n.longitude)
 
 # Geopy för att mappa Location mot coordinater
-for index, row in df.iterrows(): 
-    n=nom.geocode(row["Location"])
-    tooltip = '<a href="'+ row["URL"] + '" target="_blank">' + row["Location"] + '</a>'
-    folium.Marker([n.latitude, n.longitude], popup=tooltip + '<b>' + row["Date"] + '</b>' , tooltip=row["Namn"]).add_to(m)
-#folium.Marker([n.latitude, n.longitude]).add_to(m)
+#for index, row in df.iterrows(): 
+#    n=nom.geocode(row["Location"])
+#    tooltip = '<a href="'+ row["URL"] + '" target="_blank">' + row["Location"] + '</a>'
+#    folium.Marker([n.latitude, n.longitude], popup=tooltip + '<b>' + row["Date"] + '</b>' , tooltip=row["Namn"]).add_to(m)
+folium.Marker([n.latitude, n.longitude]).add_to(m)
 
 
 app = Flask(__name__)
