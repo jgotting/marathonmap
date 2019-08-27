@@ -7,19 +7,19 @@
 #Importera våra moduler
 # import os
 from flask import Flask
-import pandas as pd
 #import requests
+import pandas as pd
 import folium
 from folium.plugins import MarkerCluster
 #from geopy.geocoders import Nominatim
 
 #Läs in datafil
-df = pd.read_csv('marathon_2020.csv', sep=';')
+df = pd.read_csv('marathon2020.csv', sep=';', encoding='latin1')
 #
 # Fixa visualisering
 m = folium.Map(
     location=[40.613293, 12.657610],
-    zoom_start=6
+    zoom_start=5
 ,
     tiles='Stamen Terrain'
 )
